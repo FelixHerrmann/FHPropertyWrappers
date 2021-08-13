@@ -25,9 +25,6 @@ extension UserDefaultKey {
     static let uInt32: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.uInt32"
     static let uInt64: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.uInt64"
     static let float: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.float"
-    #if os(macOS) && arch(x86_64)
-    static let float80: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.float80"
-    #endif
     static let double: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.double"
     static let nsString: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.nsString"
     static let string: UserDefaultKey = "com.felixherrmann.FHPropertyWrappers.string"
@@ -59,9 +56,6 @@ final class UserDefaultTests: XCTestCase {
     @UserDefault(.uInt32) var uInt32: UInt32 = 0
     @UserDefault(.uInt64) var uInt64: UInt64 = 0
     @UserDefault(.float) var float: Float = 0
-    #if os(macOS) && arch(x86_64)
-    @UserDefault(.float80) var float80: Float80 = 0
-    #endif
     @UserDefault(.double) var double: Double = 0
     @UserDefault(.nsString) var nsString: NSString = ""
     @UserDefault(.string) var string: String = ""
@@ -258,22 +252,6 @@ final class UserDefaultTests: XCTestCase {
         XCTAssertEqual(float, 0)
         XCTAssertNil(UserDefaults.standard.value(forKey: $float.key._value))
     }
-    
-    #if os(macOS) && arch(x86_64)
-    func testFloat80() throws {
-        $float80.removeFromDefaults()
-        XCTAssertEqual(float80, 0)
-        XCTAssertNil(UserDefaults.standard.value(forKey: $float80.key._value))
-        
-        float80 = 0.1
-        XCTAssertEqual(float80, 0.1)
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $float80.key._value) as? Float80, 0.1)
-        
-        $float80.removeFromDefaults()
-        XCTAssertEqual(float80, 0)
-        XCTAssertNil(UserDefaults.standard.value(forKey: $float80.key._value))
-    }
-    #endif
     
     func testDouble() throws {
         $double.removeFromDefaults()

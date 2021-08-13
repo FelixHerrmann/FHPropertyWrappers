@@ -181,22 +181,6 @@ extension Float: UserDefaultStorable {
 }
 
 
-#if os(macOS) && arch(x86_64)
-// MARK: - UserDefaultStorable + Float80
-
-extension Float80: UserDefaultStorable {
-    
-    public static func store(value: Float80, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Float80? {
-        return store.value(forKey: key._value) as? Float80
-    }
-}
-#endif
-
-
 // MARK: - UserDefaultStorable + Double
 
 extension Double: UserDefaultStorable {
