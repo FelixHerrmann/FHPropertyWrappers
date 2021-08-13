@@ -187,11 +187,11 @@ extension Float: UserDefaultStorable {
 extension Float80: UserDefaultStorable {
     
     public static func store(value: Float80, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value, forKey: key._value._value)
+        store.set(value, forKey: key._value)
     }
     
     public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Float80? {
-        return store.value(forKey: key._value._value) as? Float80
+        return store.value(forKey: key._value) as? Float80
     }
 }
 #endif
