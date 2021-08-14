@@ -30,3 +30,56 @@ Add the following to the dependencies of your `Package.swift`:
 ### Manual
 
 Download the files in the [Sources](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources) folder and drag them into you project.
+
+
+## [UserDefault](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/UserDefault)
+
+A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
+
+It supports all the types that are allowed by `UserDefaults`. 
+
+```swift
+@UserDefault("string") var string = ""
+@UserDefault("int") var int: Int
+@UserDefault("array") var array: [String]
+@UserDefault("dictionary") var dictionary [String: Int]
+```
+
+> The default value is based on the `defaultStoredValue` if nothing is setted.
+
+In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
+For non-`RawRepresentable` enums use `Codable`. 
+
+```swift
+@UserDefault("optional") var optional: String?
+
+
+enum Enumeration: String, UserDefaultStorable {
+    case firstCase
+    case secondCase
+    
+    static var defaultStoredValue: Enumeration {
+        return .firstCase
+    }
+}
+
+@UserDefault("enumeration") var enumeration: Enumeration
+
+
+struct CustomType: Codable, UserDefaultStorable {
+    let name: String
+    
+    static var defaultStoredValue: CustomType {
+        return CustomType(name: "")
+    }
+}
+
+@UserDefault("codable") var codable: CustomType
+```
+
+> The wrapped value must conform to `UserDefaultStorable`.
+
+
+## License
+
+FHPropertyWrappers is available under the MIT license. See the [LICENSE](https://github.com/FelixHerrmann/FHPropertyWrappers/blob/master/LICENSE) file for more info.
