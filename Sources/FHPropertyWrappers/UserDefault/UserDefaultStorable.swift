@@ -20,10 +20,3 @@ extension UserDefaultStorable {
         try Self.store(value: self, in: store, key: key)
     }
 }
-
-extension UserDefaultStorable where Self: NSObject {
-    
-    public static var defaultStoredValue: Self {
-        return Self()
-    }
-}

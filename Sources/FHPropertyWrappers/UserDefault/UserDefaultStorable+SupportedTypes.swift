@@ -23,6 +23,10 @@ extension Bool: UserDefaultStorable {
 
 extension NSNumber: UserDefaultStorable {
     
+    public static var defaultStoredValue: Self {
+        return Self()
+    }
+    
     public static func store(value: NSNumber, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -253,6 +257,10 @@ extension Double: UserDefaultStorable {
 
 extension NSString: UserDefaultStorable {
     
+    public static var defaultStoredValue: Self {
+        return Self()
+    }
+    
     public static func store(value: NSString, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -284,6 +292,10 @@ extension String: UserDefaultStorable {
 // MARK: - UserDefaultStorable + NSDate
 
 extension NSDate: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Self {
+        return Self()
+    }
     
     public static func store(value: NSDate, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -317,6 +329,10 @@ extension Date: UserDefaultStorable {
 
 extension NSURL: UserDefaultStorable {
     
+    public static var defaultStoredValue: Self {
+        return Self()
+    }
+    
     public static func store(value: NSURL, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value as URL, forKey: key._value)
     }
@@ -348,6 +364,10 @@ extension URL: UserDefaultStorable {
 // MARK: - UserDefaultStorable + NSData
 
 extension NSData: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Self {
+        return Self()
+    }
     
     public static func store(value: NSData, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
