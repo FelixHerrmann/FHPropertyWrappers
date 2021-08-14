@@ -1,14 +1,28 @@
 import XCTest
 @testable import FHPropertyWrappers
 
-struct CustomType: Codable, UserDefaultStorable, Equatable {
+struct CustomType: Codable, Equatable {
     var string: String
     var int: Int
 }
 
-enum RawRepresentableEnumeration: String, UserDefaultStorable {
+extension CustomType: UserDefaultStorable {
+    
+    static var defaultStoredValue: CustomType {
+        CustomType(string: "", int: 0)
+    }
+}
+
+enum RawRepresentableEnumeration: String {
     case a
     case b
+}
+
+extension RawRepresentableEnumeration: UserDefaultStorable {
+    
+    static var defaultStoredValue: RawRepresentableEnumeration {
+        return .a
+    }
 }
 
 extension UserDefaultKey {
@@ -43,33 +57,33 @@ extension UserDefaultKey {
 
 final class UserDefaultTests: XCTestCase {
     
-    @UserDefault(.bool) var bool: Bool = false
-    @UserDefault(.nsNumber) var nsNumber: NSNumber = 0
-    @UserDefault(.int) var int: Int = 0
-    @UserDefault(.int8) var int8: Int8 = 0
-    @UserDefault(.int16) var int16: Int16 = 0
-    @UserDefault(.int32) var int32: Int32 = 0
-    @UserDefault(.int64) var int64: Int64 = 0
-    @UserDefault(.uInt) var uInt: UInt = 0
-    @UserDefault(.uInt8) var uInt8: UInt8 = 0
-    @UserDefault(.uInt16) var uInt16: UInt16 = 0
-    @UserDefault(.uInt32) var uInt32: UInt32 = 0
-    @UserDefault(.uInt64) var uInt64: UInt64 = 0
-    @UserDefault(.float) var float: Float = 0
-    @UserDefault(.double) var double: Double = 0
-    @UserDefault(.nsString) var nsString: NSString = ""
-    @UserDefault(.string) var string: String = ""
+    @UserDefault(.bool) var bool: Bool
+    @UserDefault(.nsNumber) var nsNumber: NSNumber
+    @UserDefault(.int) var int: Int
+    @UserDefault(.int8) var int8: Int8
+    @UserDefault(.int16) var int16: Int16
+    @UserDefault(.int32) var int32: Int32
+    @UserDefault(.int64) var int64: Int64
+    @UserDefault(.uInt) var uInt: UInt
+    @UserDefault(.uInt8) var uInt8: UInt8
+    @UserDefault(.uInt16) var uInt16: UInt16
+    @UserDefault(.uInt32) var uInt32: UInt32
+    @UserDefault(.uInt64) var uInt64: UInt64
+    @UserDefault(.float) var float: Float
+    @UserDefault(.double) var double: Double
+    @UserDefault(.nsString) var nsString: NSString
+    @UserDefault(.string) var string: String
     @UserDefault(.nsDate) var nsDate: NSDate = NSDate(timeIntervalSince1970: 919753200)
     @UserDefault(.date) var date: Date = Date(timeIntervalSince1970: 919753200)
-    @UserDefault(.nsURL) var nsURL: NSURL = NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
-    @UserDefault(.url) var url: URL = URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
-    @UserDefault(.nsData) var nsData: NSData = NSData(data: Data("".utf8))
-    @UserDefault(.data) var data: Data = Data("".utf8)
-    @UserDefault(.array) var array: [String] = ["a", "b"]
-    @UserDefault(.dictionary) var dictionary: [String: Int] = ["a": 1, "b": 2]
-    @UserDefault(.optional) var optional: String? = nil
-    @UserDefault(.codable) var codabel: CustomType = CustomType(string: "", int: 0)
-    @UserDefault(.rawRepresentable) var rawRepresentable: RawRepresentableEnumeration = .a
+    @UserDefault(.nsURL) var nsURL: NSURL
+    @UserDefault(.url) var url: URL
+    @UserDefault(.nsData) var nsData: NSData
+    @UserDefault(.data) var data: Data
+    @UserDefault(.array) var array: [String]
+    @UserDefault(.dictionary) var dictionary: [String: Int]
+    @UserDefault(.optional) var optional: String?
+    @UserDefault(.codable) var codabel: CustomType
+    @UserDefault(.rawRepresentable) var rawRepresentable: RawRepresentableEnumeration
     
     func testBool() throws {
         $bool.removeFromDefaults()
@@ -87,7 +101,7 @@ final class UserDefaultTests: XCTestCase {
     
     func testNSNumber() throws {
         $nsNumber.removeFromDefaults()
-        XCTAssertEqual(nsNumber, 0)
+        XCTAssertEqual(nsNumber.intValue, 0) // NSNumber() != NSNumber(0)
         XCTAssertNil(UserDefaults.standard.value(forKey: $nsNumber.key._value))
         
         nsNumber = 1
@@ -95,7 +109,7 @@ final class UserDefaultTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.value(forKey: $nsNumber.key._value) as? NSNumber, 1)
         
         $nsNumber.removeFromDefaults()
-        XCTAssertEqual(nsNumber, 0)
+        XCTAssertEqual(nsNumber.intValue, 0)
         XCTAssertNil(UserDefaults.standard.value(forKey: $nsNumber.key._value))
     }
     
@@ -325,35 +339,35 @@ final class UserDefaultTests: XCTestCase {
     
     func testNSURL() throws {
         $nsURL.removeFromDefaults()
-        XCTAssertEqual(nsURL, NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(nsURL, NSURL())
         XCTAssertNil(UserDefaults.standard.value(forKey: $nsURL.key._value))
         
-        nsURL = NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers/settings")!
-        XCTAssertEqual(nsURL, NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers/settings")!)
-        XCTAssertEqual(UserDefaults.standard.url(forKey: $nsURL.key._value) as NSURL?, NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers/settings")!)
+        nsURL = NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
+        XCTAssertEqual(nsURL, NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(UserDefaults.standard.url(forKey: $nsURL.key._value) as NSURL?, NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
         
         $nsURL.removeFromDefaults()
-        XCTAssertEqual(nsURL, NSURL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(nsURL, NSURL())
         XCTAssertNil(UserDefaults.standard.value(forKey: $nsURL.key._value))
     }
     
     func testURL() throws {
         $url.removeFromDefaults()
-        XCTAssertEqual(url, URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(url, URL(fileURLWithPath: ""))
         XCTAssertNil(UserDefaults.standard.value(forKey: $url.key._value))
         
-        url = URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers/settings")!
-        XCTAssertEqual(url, URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers/settings")!)
-        XCTAssertEqual(UserDefaults.standard.url(forKey: $url.key._value), URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers/settings")!)
+        url = URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
+        XCTAssertEqual(url, URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(UserDefaults.standard.url(forKey: $url.key._value), URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
         
         $url.removeFromDefaults()
-        XCTAssertEqual(url, URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(url, URL(fileURLWithPath: ""))
         XCTAssertNil(UserDefaults.standard.value(forKey: $url.key._value))
     }
     
     func testNSData() throws {
         $nsData.removeFromDefaults()
-        XCTAssertEqual(nsData, NSData(data: Data("".utf8)))
+        XCTAssertEqual(nsData, NSData())
         XCTAssertNil(UserDefaults.standard.value(forKey: $nsData.key._value))
 
         nsData = NSData(data: Data("data".utf8))
@@ -361,13 +375,13 @@ final class UserDefaultTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.value(forKey: $nsData.key._value) as? NSData, NSData(data: Data("data".utf8)))
 
         $nsData.removeFromDefaults()
-        XCTAssertEqual(nsData, NSData(data: Data("".utf8)))
+        XCTAssertEqual(nsData, NSData())
         XCTAssertNil(UserDefaults.standard.value(forKey: $nsData.key._value))
     }
 
     func testData() throws {
         $data.removeFromDefaults()
-        XCTAssertEqual(data, Data("".utf8))
+        XCTAssertEqual(data, Data())
         XCTAssertNil(UserDefaults.standard.value(forKey: $data.key._value))
 
         data = Data("data".utf8)
@@ -375,14 +389,14 @@ final class UserDefaultTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.value(forKey: $data.key._value) as? Data, Data("data".utf8))
 
         $data.removeFromDefaults()
-        XCTAssertEqual(data, Data("".utf8))
+        XCTAssertEqual(data, Data())
         XCTAssertNil(UserDefaults.standard.value(forKey: $data.key._value))
     }
 
     
     func testArray() throws {
         $array.removeFromDefaults()
-        XCTAssertEqual(array, ["a", "b"])
+        XCTAssertEqual(array, [])
         XCTAssertNil(UserDefaults.standard.value(forKey: $array.key._value))
         
         array = ["a", "b", "c"]
@@ -390,13 +404,13 @@ final class UserDefaultTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.value(forKey: $array.key._value) as? Array, ["a", "b", "c"])
         
         $array.removeFromDefaults()
-        XCTAssertEqual(array, ["a", "b"])
+        XCTAssertEqual(array, [])
         XCTAssertNil(UserDefaults.standard.value(forKey: $array.key._value))
     }
     
-    func _testDictionary() throws {
+    func testDictionary() throws {
         $dictionary.removeFromDefaults()
-        XCTAssertEqual(dictionary, ["a": 1, "b": 2])
+        XCTAssertEqual(dictionary, [:])
         XCTAssertNil(UserDefaults.standard.value(forKey: $dictionary.key._value))
         
         dictionary = ["a": 1, "b": 2, "c": 3]
@@ -404,7 +418,7 @@ final class UserDefaultTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.value(forKey: $dictionary.key._value) as? Dictionary, ["a": 1, "b": 2, "c": 3])
         
         $dictionary.removeFromDefaults()
-        XCTAssertEqual(dictionary, ["a": 1, "b": 2])
+        XCTAssertEqual(dictionary, [:])
         XCTAssertNil(UserDefaults.standard.value(forKey: $dictionary.key._value))
     }
     
