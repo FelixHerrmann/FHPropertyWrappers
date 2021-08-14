@@ -32,7 +32,7 @@ Add the following to the dependencies of your `Package.swift`:
 Download the files in the [Sources](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources) folder and drag them into you project.
 
 
-## [UserDefault](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/UserDefault)
+## [UserDefault](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/UserDefault)
 
 A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
 
