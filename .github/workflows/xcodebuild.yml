@@ -44,9 +44,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvos -destination 'name=name=Apple TV'
+        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvos -destination 'name=Apple TV'
       - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvos -destination 'name=name=Apple TV' test
+        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvos -destination 'name=Apple TV' test
   
   build-tvos-simulator:
     runs-on: macos-latest
