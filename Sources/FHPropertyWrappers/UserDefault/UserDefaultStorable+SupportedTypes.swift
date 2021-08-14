@@ -19,24 +19,6 @@ extension Bool: UserDefaultStorable {
 }
 
 
-// MARK: - UserDefaultStorable + NSNumber
-
-extension NSNumber: UserDefaultStorable {
-    
-    public static var defaultStoredValue: Self {
-        return Self()
-    }
-    
-    public static func store(value: NSNumber, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Self? {
-        return store.value(forKey: key._value) as? Self
-    }
-}
-
-
 // MARK: - UserDefaultStorable + Int
 
 extension Int: UserDefaultStorable {
@@ -253,24 +235,6 @@ extension Double: UserDefaultStorable {
 }
 
 
-// MARK: - UserDefaultStorable + NSString
-
-extension NSString: UserDefaultStorable {
-    
-    public static var defaultStoredValue: Self {
-        return Self()
-    }
-    
-    public static func store(value: NSString, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Self? {
-        return store.value(forKey: key._value) as? Self
-    }
-}
-
-
 // MARK: - UserDefaultStorable + String
 
 extension String: UserDefaultStorable {
@@ -285,24 +249,6 @@ extension String: UserDefaultStorable {
     
     public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> String? {
         return store.value(forKey: key._value) as? String
-    }
-}
-
-
-// MARK: - UserDefaultStorable + NSDate
-
-extension NSDate: UserDefaultStorable {
-    
-    public static var defaultStoredValue: Self {
-        return Self()
-    }
-    
-    public static func store(value: NSDate, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Self? {
-        return store.value(forKey: key._value) as? Self
     }
 }
 
@@ -325,24 +271,6 @@ extension Date: UserDefaultStorable {
 }
 
 
-// MARK: - UserDefaultStorable + NSURL
-
-extension NSURL: UserDefaultStorable {
-    
-    public static var defaultStoredValue: Self {
-        return Self()
-    }
-    
-    public static func store(value: NSURL, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value as URL, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Self? {
-        return store.url(forKey: key._value) as? Self
-    }
-}
-
-
 // MARK: - UserDefaultStorable + URL
 
 extension URL: UserDefaultStorable {
@@ -357,24 +285,6 @@ extension URL: UserDefaultStorable {
     
     public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> URL? {
         return store.url(forKey: key._value)
-    }
-}
-
-
-// MARK: - UserDefaultStorable + NSData
-
-extension NSData: UserDefaultStorable {
-    
-    public static var defaultStoredValue: Self {
-        return Self()
-    }
-    
-    public static func store(value: NSData, in store: UserDefaults, key: UserDefaultKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: UserDefaultKey) throws -> Self? {
-        return store.value(forKey: key._value) as? Self
     }
 }
 
