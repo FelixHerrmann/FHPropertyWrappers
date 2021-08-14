@@ -1,8 +1,13 @@
 import Foundation
 
+
 // MARK: - UserDefaultStorable + Bool
 
 extension Bool: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Bool {
+        return Bool()
+    }
     
     public static func store(value: Bool, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -12,6 +17,7 @@ extension Bool: UserDefaultStorable {
         return store.value(forKey: key._value) as? Bool
     }
 }
+
 
 // MARK: - UserDefaultStorable + NSNumber
 
@@ -31,6 +37,10 @@ extension NSNumber: UserDefaultStorable {
 
 extension Int: UserDefaultStorable {
     
+    public static var defaultStoredValue: Int {
+        return Int()
+    }
+    
     public static func store(value: Int, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -44,6 +54,10 @@ extension Int: UserDefaultStorable {
 // MARK: - UserDefaultStorable + Int8
 
 extension Int8: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Int8 {
+        return Int8()
+    }
     
     public static func store(value: Int8, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -59,6 +73,10 @@ extension Int8: UserDefaultStorable {
 
 extension Int16: UserDefaultStorable {
     
+    public static var defaultStoredValue: Int16 {
+        return Int16()
+    }
+    
     public static func store(value: Int16, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -72,6 +90,10 @@ extension Int16: UserDefaultStorable {
 // MARK: - UserDefaultStorable + Int32
 
 extension Int32: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Int32 {
+        return Int32()
+    }
     
     public static func store(value: Int32, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -87,6 +109,10 @@ extension Int32: UserDefaultStorable {
 
 extension Int64: UserDefaultStorable {
     
+    public static var defaultStoredValue: Int64 {
+        return Int64()
+    }
+    
     public static func store(value: Int64, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -100,6 +126,10 @@ extension Int64: UserDefaultStorable {
 // MARK: - UserDefaultStorable + UInt
 
 extension UInt: UserDefaultStorable {
+    
+    public static var defaultStoredValue: UInt {
+        return UInt()
+    }
     
     public static func store(value: UInt, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -115,6 +145,10 @@ extension UInt: UserDefaultStorable {
 
 extension UInt8: UserDefaultStorable {
     
+    public static var defaultStoredValue: UInt8 {
+        return UInt8()
+    }
+    
     public static func store(value: UInt8, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -128,6 +162,10 @@ extension UInt8: UserDefaultStorable {
 // MARK: - UserDefaultStorable + UInt16
 
 extension UInt16: UserDefaultStorable {
+    
+    public static var defaultStoredValue: UInt16 {
+        return UInt16()
+    }
     
     public static func store(value: UInt16, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -143,6 +181,10 @@ extension UInt16: UserDefaultStorable {
 
 extension UInt32: UserDefaultStorable {
     
+    public static var defaultStoredValue: UInt32 {
+        return UInt32()
+    }
+    
     public static func store(value: UInt32, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -156,6 +198,10 @@ extension UInt32: UserDefaultStorable {
 // MARK: - UserDefaultStorable + UInt64
 
 extension UInt64: UserDefaultStorable {
+    
+    public static var defaultStoredValue: UInt64 {
+        return UInt64()
+    }
     
     public static func store(value: UInt64, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -171,6 +217,10 @@ extension UInt64: UserDefaultStorable {
 
 extension Float: UserDefaultStorable {
     
+    public static var defaultStoredValue: Float {
+        return Float()
+    }
+    
     public static func store(value: Float, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -184,6 +234,10 @@ extension Float: UserDefaultStorable {
 // MARK: - UserDefaultStorable + Double
 
 extension Double: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Double {
+        return Double()
+    }
     
     public static func store(value: Double, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -213,6 +267,10 @@ extension NSString: UserDefaultStorable {
 
 extension String: UserDefaultStorable {
     
+    public static var defaultStoredValue: String {
+        return String()
+    }
+    
     public static func store(value: String, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -240,6 +298,10 @@ extension NSDate: UserDefaultStorable {
 // MARK: - UserDefaultStorable + Date
 
 extension Date: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Date {
+        return Date()
+    }
     
     public static func store(value: Date, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -269,6 +331,10 @@ extension NSURL: UserDefaultStorable {
 
 extension URL: UserDefaultStorable {
     
+    public static var defaultStoredValue: URL {
+        return URL(fileURLWithPath: "")
+    }
+    
     public static func store(value: URL, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -297,6 +363,10 @@ extension NSData: UserDefaultStorable {
 
 extension Data: UserDefaultStorable {
     
+    public static var defaultStoredValue: Data {
+        return Data()
+    }
+    
     public static func store(value: Data, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -310,6 +380,10 @@ extension Data: UserDefaultStorable {
 // MARK: - UserDefaultStorable + Array
 
 extension Array: UserDefaultStorable where Element: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Array<Element> {
+        return []
+    }
     
     public static func store(value: Array, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
@@ -325,6 +399,10 @@ extension Array: UserDefaultStorable where Element: UserDefaultStorable {
 
 extension Dictionary: UserDefaultStorable where Key: UserDefaultStorable, Value: UserDefaultStorable {
     
+    public static var defaultStoredValue: Dictionary<Key, Value> {
+        return [:]
+    }
+    
     public static func store(value: Dictionary, in store: UserDefaults, key: UserDefaultKey) throws {
         store.set(value, forKey: key._value)
     }
@@ -338,6 +416,10 @@ extension Dictionary: UserDefaultStorable where Key: UserDefaultStorable, Value:
 // MARK: - UserDefaultStorable + Optional
 
 extension Optional: UserDefaultStorable where Wrapped: UserDefaultStorable {
+    
+    public static var defaultStoredValue: Optional<Wrapped> {
+        return .none
+    }
     
     public static func store(value: Optional<Wrapped>, in store: UserDefaults, key: UserDefaultKey) throws {
         switch value {

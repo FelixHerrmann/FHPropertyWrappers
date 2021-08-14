@@ -20,7 +20,7 @@ import os.log
     ///   - defaultValue: The default value if a value of the given type is not specified for the given key.
     ///   - key: The key to read and write the value to in the **UserDefaults** store.
     ///   - store: The **UserDefaults** store to read and write to. Default value is `UserDefaults.standard`.
-    public init(wrappedValue defaultValue: Value, _ key: UserDefaultKey, store: UserDefaults = .standard) {
+    public init(wrappedValue defaultValue: Value = .defaultStoredValue, _ key: UserDefaultKey, store: UserDefaults = .standard) {
         self.defaultValue = defaultValue
         self.key = key
         self.store = store
