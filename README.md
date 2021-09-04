@@ -32,17 +32,17 @@ Add the following to the dependencies of your `Package.swift`:
 Download the files in the [Sources](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources) folder and drag them into you project.
 
 
-## [UserDefault](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/UserDefault)
+## [Stored](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/Stored)
 
 A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
 
 It supports all the types that are allowed by `UserDefaults`. 
 
 ```swift
-@UserDefault("string") var string = ""
-@UserDefault("int") var int: Int
-@UserDefault("array") var array: [String]
-@UserDefault("dictionary") var dictionary [String: Int]
+@Stored("string") var string = ""
+@Stored("int") var int: Int
+@Stored("array") var array: [String]
+@Stored("dictionary") var dictionary [String: Int]
 ```
 
 > The default value is based on the `defaultStoredValue` if nothing is setted.
@@ -51,10 +51,10 @@ In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported 
 For non-`RawRepresentable` enums use `Codable`. 
 
 ```swift
-@UserDefault("optional") var optional: String?
+@Stored("optional") var optional: String?
 
 
-enum Enumeration: String, UserDefaultStorable {
+enum Enumeration: String, Storable {
     case firstCase
     case secondCase
     
@@ -63,10 +63,10 @@ enum Enumeration: String, UserDefaultStorable {
     }
 }
 
-@UserDefault("enumeration") var enumeration: Enumeration
+@Stored("enumeration") var enumeration: Enumeration
 
 
-struct CustomType: Codable, UserDefaultStorable {
+struct CustomType: Codable, Storable {
     let name: String
     
     static var defaultStoredValue: CustomType {
@@ -74,10 +74,10 @@ struct CustomType: Codable, UserDefaultStorable {
     }
 }
 
-@UserDefault("codable") var codable: CustomType
+@Stored("codable") var codable: CustomType
 ```
 
-> The wrapped value must conform to `UserDefaultStorable`.
+> The wrapped value must conform to `Storable`.
 
 
 ## License
