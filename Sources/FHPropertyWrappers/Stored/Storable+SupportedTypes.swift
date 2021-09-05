@@ -368,21 +368,18 @@ extension Optional: Storable where Wrapped: Storable {
 
 // MARK: - Storable + Codable implementation
 
-extension Encodable where Self: Storable {
-    
-    public static func write(value: Self, in store: UserDefaults, key: StoreKey) throws {
-        let encoder = PropertyListEncoder()
-        let data = try encoder.encode(value)
-        store.set(data, forKey: key._value)
-    }
-}
-
-extension Decodable where Self: Storable {
+extension Storable where Self: Codable {
     
     public static func read(in store: UserDefaults, key: StoreKey) throws -> Self? {
         guard let data = store.value(forKey: key._value) as? Data else { return nil }
         let decoder = PropertyListDecoder()
         return try decoder.decode(Self.self, from: data)
+    }
+    
+    public static func write(value: Self, in store: UserDefaults, key: StoreKey) throws {
+        let encoder = PropertyListEncoder()
+        let data = try encoder.encode(value)
+        store.set(data, forKey: key._value)
     }
 }
 
