@@ -6,11 +6,11 @@ public protocol Storable {
     /// Used as a default value for the `wrappedValue` attribute.
     static var defaultStoredValue: Self { get }
     
-    /// Write the value to the `store`.
-    static func write(value: Self, in store: UserDefaults, key: StoreKey) throws
-    
     /// Read the value from the `store`.
     static func read(in store: UserDefaults, key: StoreKey) throws -> Self?
+    
+    /// Write the value to the `store`.
+    static func write(value: Self, in store: UserDefaults, key: StoreKey) throws
 }
 
 extension Storable {

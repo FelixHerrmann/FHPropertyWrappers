@@ -3,342 +3,214 @@ import Foundation
 
 // MARK: - Bool + Storable
 
-extension Bool: Storable {
+extension Bool: RawStorable {
     
     public static var defaultStoredValue: Bool {
         return Bool()
     }
-    
-    public static func write(value: Bool, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Bool? {
-        return store.value(forKey: key._value) as? Bool
-    }
 }
 
 
-// MARK: - Int + Storable
+// MARK: - Int + RawStorable
 
-extension Int: Storable {
+extension Int: RawStorable {
     
     public static var defaultStoredValue: Int {
         return Int()
     }
-    
-    public static func write(value: Int, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Int? {
-        return store.value(forKey: key._value) as? Int
-    }
 }
 
 
-// MARK: - Int8 + Storable
+// MARK: - Int8 + RawStorable
 
-extension Int8: Storable {
+extension Int8: RawStorable {
     
     public static var defaultStoredValue: Int8 {
         return Int8()
     }
-    
-    public static func write(value: Int8, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Int8? {
-        return store.value(forKey: key._value) as? Int8
-    }
 }
 
 
-// MARK: - Int16 + Storable
+// MARK: - Int16 + RawStorable
 
-extension Int16: Storable {
+extension Int16: RawStorable {
     
     public static var defaultStoredValue: Int16 {
         return Int16()
     }
-    
-    public static func write(value: Int16, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Int16? {
-        return store.value(forKey: key._value) as? Int16
-    }
 }
 
 
-// MARK: - Int32 + Storable
+// MARK: - Int32 + RawStorable
 
-extension Int32: Storable {
+extension Int32: RawStorable {
     
     public static var defaultStoredValue: Int32 {
         return Int32()
     }
-    
-    public static func write(value: Int32, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Int32? {
-        return store.value(forKey: key._value) as? Int32
-    }
 }
 
 
-// MARK: - Int64 + Storable
+// MARK: - Int64 + RawStorable
 
-extension Int64: Storable {
+extension Int64: RawStorable {
     
     public static var defaultStoredValue: Int64 {
         return Int64()
     }
-    
-    public static func write(value: Int64, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Int64? {
-        return store.value(forKey: key._value) as? Int64
-    }
 }
 
 
-// MARK: - UInt + Storable
+// MARK: - UInt + RawStorable
 
-extension UInt: Storable {
+extension UInt: RawStorable {
     
     public static var defaultStoredValue: UInt {
         return UInt()
     }
-    
-    public static func write(value: UInt, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> UInt? {
-        return store.value(forKey: key._value) as? UInt
-    }
 }
 
 
-// MARK: - UInt8 + Storable
+// MARK: - UInt8 + RawStorable
 
-extension UInt8: Storable {
+extension UInt8: RawStorable {
     
     public static var defaultStoredValue: UInt8 {
         return UInt8()
     }
-    
-    public static func write(value: UInt8, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> UInt8? {
-        return store.value(forKey: key._value) as? UInt8
-    }
 }
 
 
-// MARK: - UInt16 + Storable
+// MARK: - UInt16 + RawStorable
 
-extension UInt16: Storable {
+extension UInt16: RawStorable {
     
     public static var defaultStoredValue: UInt16 {
         return UInt16()
     }
-    
-    public static func write(value: UInt16, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> UInt16? {
-        return store.value(forKey: key._value) as? UInt16
-    }
 }
 
 
-// MARK: - UInt32 + Storable
+// MARK: - UInt32 + RawStorable
 
-extension UInt32: Storable {
+extension UInt32: RawStorable {
     
     public static var defaultStoredValue: UInt32 {
         return UInt32()
     }
-    
-    public static func write(value: UInt32, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> UInt32? {
-        return store.value(forKey: key._value) as? UInt32
-    }
 }
 
 
-// MARK: - UInt64 + Storable
+// MARK: - UInt64 + RawStorable
 
-extension UInt64: Storable {
+extension UInt64: RawStorable {
     
     public static var defaultStoredValue: UInt64 {
         return UInt64()
     }
-    
-    public static func write(value: UInt64, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> UInt64? {
-        return store.value(forKey: key._value) as? UInt64
-    }
 }
 
 
-// MARK: - Float + Storable
+// MARK: - Float + RawStorable
 
-extension Float: Storable {
+extension Float: RawStorable {
     
     public static var defaultStoredValue: Float {
         return Float()
     }
-    
-    public static func write(value: Float, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Float? {
-        return store.value(forKey: key._value) as? Float
-    }
 }
 
 
-// MARK: - Double + Storable
+// MARK: - Double + RawStorable
 
-extension Double: Storable {
+extension Double: RawStorable {
     
     public static var defaultStoredValue: Double {
         return Double()
     }
-    
-    public static func write(value: Double, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Double? {
-        return store.value(forKey: key._value) as? Double
-    }
 }
 
 
-// MARK: - String + Storable
+// MARK: - String + RawStorable
 
-extension String: Storable {
+extension String: RawStorable {
     
     public static var defaultStoredValue: String {
         return String()
     }
-    
-    public static func write(value: String, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> String? {
-        return store.value(forKey: key._value) as? String
-    }
 }
 
 
-// MARK: - Date + Storable
+// MARK: - Date + RawStorable
 
-extension Date: Storable {
+extension Date: RawStorable {
     
     public static var defaultStoredValue: Date {
         return Date()
     }
-    
-    public static func write(value: Date, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Date? {
-        return store.value(forKey: key._value) as? Date
-    }
 }
 
 
-// MARK: - URL + Storable
+// MARK: - URL + RawStorable
 
-extension URL: Storable {
+extension URL: RawStorable {
     
     public static var defaultStoredValue: URL {
         return URL(fileURLWithPath: "")
     }
     
-    public static func write(value: URL, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
     public static func read(in store: UserDefaults, key: StoreKey) throws -> URL? {
         return store.url(forKey: key._value)
+    }
+    
+    public static func write(value: URL, in store: UserDefaults, key: StoreKey) throws {
+        store.set(value, forKey: key._value)
     }
 }
 
 
-// MARK: - Data + Storable
+// MARK: - Data + RawStorable
 
-extension Data: Storable {
+extension Data: RawStorable {
     
     public static var defaultStoredValue: Data {
         return Data()
-    }
-    
-    public static func write(value: Data, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Data? {
-        return store.value(forKey: key._value) as? Data
     }
 }
 
 
 // MARK: - Array + Storable
 
-extension Array: Storable where Element: Storable {
+extension Array: Storable where Element: RawStorable {
     
     public static var defaultStoredValue: Array<Element> {
         return []
     }
     
-    public static func write(value: Array, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
     public static func read(in store: UserDefaults, key: StoreKey) throws -> Array? {
         return store.value(forKey: key._value) as? Array
+    }
+    
+    public static func write(value: Array, in store: UserDefaults, key: StoreKey) throws {
+        store.set(value, forKey: key._value)
     }
 }
 
 
 // MARK: - Dictionary + Storable
 
-extension Dictionary: Storable where Key: Storable, Value: Storable {
+extension Dictionary: Storable where Key: RawStorable, Value: RawStorable {
     
     public static var defaultStoredValue: Dictionary<Key, Value> {
         return [:]
     }
     
-    public static func write(value: Dictionary, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value, forKey: key._value)
-    }
-    
     public static func read(in store: UserDefaults, key: StoreKey) throws -> Dictionary? {
         return store.value(forKey: key._value) as? Dictionary
+    }
+    
+    public static func write(value: Dictionary, in store: UserDefaults, key: StoreKey) throws {
+        store.set(value, forKey: key._value)
     }
 }
 
