@@ -351,6 +351,10 @@ extension Optional: Storable where Wrapped: Storable {
         return .none
     }
     
+    public static func read(in store: UserDefaults, key: StoreKey) throws -> Optional<Wrapped>? {
+        return try Wrapped.read(in: store, key: key)
+    }
+    
     public static func write(value: Optional<Wrapped>, in store: UserDefaults, key: StoreKey) throws {
         switch value {
         case .some(let storable):
@@ -358,10 +362,6 @@ extension Optional: Storable where Wrapped: Storable {
         case .none:
             store.removeObject(forKey: key._value)
         }
-    }
-    
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Optional<Wrapped>? {
-        return store.value(forKey: key._value) as? Optional<Wrapped>
     }
 }
 
