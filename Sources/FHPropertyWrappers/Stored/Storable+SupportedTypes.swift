@@ -389,14 +389,14 @@ extension Decodable where Self: Storable {
 
 // MARK: - Storable + RawRepresentable implementation
 
-extension RawRepresentable where RawValue: Storable {
-
-    public static func write(value: Self, in store: UserDefaults, key: StoreKey) throws {
-        store.set(value.rawValue, forKey: key._value)
-    }
-
+extension Storable where Self: RawRepresentable, RawValue: Storable {
+    
     public static func read(in store: UserDefaults, key: StoreKey) throws -> Self? {
-        guard let rawValue = store.value(forKey: key._value) as? RawValue else { return nil }
+        guard let rawValue = try RawValue.read(in: store, key: key) else { return nil }
         return Self(rawValue: rawValue)
+    }
+    
+    public static func write(value: Self, in store: UserDefaults, key: StoreKey) throws {
+        try value.rawValue.write(in: store, key: key)
     }
 }
