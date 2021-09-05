@@ -52,8 +52,9 @@ For non-`RawRepresentable` enums use `Codable`.
 
 ```swift
 @Stored("optional") var optional: String?
+```
 
-
+```swift
 enum Enumeration: String, Storable {
     case firstCase
     case secondCase
@@ -64,8 +65,9 @@ enum Enumeration: String, Storable {
 }
 
 @Stored("enumeration") var enumeration: Enumeration
+```
 
-
+```swift
 struct CustomType: Codable, Storable {
     let name: String
     
