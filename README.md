@@ -36,7 +36,7 @@ Download the files in the [Sources](https://github.com/FelixHerrmann/FHPropertyW
 
 A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
 
-It supports all the types that are allowed by `UserDefaults`. 
+It supports all the types that are allowed by `UserDefaults`.
 
 ```swift
 @Stored("string") var string = ""
@@ -80,6 +80,57 @@ struct CustomType: Codable, Storable {
 ```
 
 > The wrapped value must conform to `Storable`.
+
+
+## [SecureStored](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/SecureStored)
+
+A property wrapper which reads and writes the wrapped value in the `Keychain`.
+
+It supports all the base types, most of them rely on `Codable`.
+Check all the supported types [here](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/SecureStored/SecureStorable+SupportedTypes.swift).
+
+```swift
+@SecureStored("string") var string = ""
+@SecureStored("int") var int: Int
+@SecureStored("array") var array: [String]
+@SecureStored("dictionary") var dictionary [String: Int]
+```
+
+> The default value is based on the `defaultStoredValue` if nothing is setted.
+
+In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
+For non-`RawRepresentable` enums use `Codable`. 
+
+```swift
+@SecureStored("optional") var optional: String?
+```
+
+```swift
+enum Enumeration: String, SecureStorable {
+    case firstCase
+    case secondCase
+    
+    static var defaultStoredValue: Enumeration {
+        return .firstCase
+    }
+}
+
+@SecureStored("enumeration") var enumeration: Enumeration
+```
+
+```swift
+struct CustomType: Codable, SecureStorable {
+    let name: String
+    
+    static var defaultStoredValue: CustomType {
+        return CustomType(name: "")
+    }
+}
+
+@SecureStored("codable") var codable: CustomType
+```
+
+> The wrapped value must conform to `SecureStorable`.
 
 
 ## License
