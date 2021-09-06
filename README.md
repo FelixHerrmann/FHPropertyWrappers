@@ -37,6 +37,7 @@ Download the files in the [Sources](https://github.com/FelixHerrmann/FHPropertyW
 A property wrapper which reads and writes the wrapped value in the `UserDefaults` store.
 
 It supports all the types that are allowed by `UserDefaults`.
+Check all the supported types [here](https://github.com/FelixHerrmann/FHPropertyWrappers/blob/master/Sources/FHPropertyWrappers/Stored/Storable%2BSupportedTypes.swift).
 
 ```swift
 @Stored("string") var string = ""
