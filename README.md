@@ -6,7 +6,7 @@
 <a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers"><img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers"></a>
 </p>
 
-Some usefull Swift Property Wrappers.
+Some useful Swift Property Wrappers.
 
 >Will be expanded over time.
 
@@ -46,7 +46,7 @@ Check all the supported types [here](https://github.com/FelixHerrmann/FHProperty
 @Stored("dictionary") var dictionary [String: Int]
 ```
 
-> The default value is based on the `defaultStoredValue` if nothing is setted.
+> The default value is based on the `defaultStoredValue` if nothing is set.
 
 In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
 For non-`RawRepresentable` enums use `Codable`. 
@@ -97,7 +97,7 @@ Check all the supported types [here](https://github.com/FelixHerrmann/FHProperty
 @SecureStored("dictionary") var dictionary [String: Int]
 ```
 
-> The default value is based on the `defaultStoredValue` if nothing is setted.
+> The default value is based on the `defaultStoredValue` if nothing is set.
 
 In addition to that, `Optional`, `RawRepresentable` and `Codable` are supported too.
 For non-`RawRepresentable` enums use `Codable`. 
