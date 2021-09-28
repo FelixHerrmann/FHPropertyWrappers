@@ -1,5 +1,7 @@
 # FHPropertyWrappers
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
 [![Version](https://img.shields.io/github/v/release/FelixHerrmann/FHPropertyWrappers)](https://github.com/FelixHerrmann/FHPropertyWrappers/releases)
 [![License](https://img.shields.io/github/license/FelixHerrmann/FHPropertyWrappers)](https://github.com/FelixHerrmann/FHPropertyWrappers/blob/master/LICENSE)
 [![Tweet](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers)
