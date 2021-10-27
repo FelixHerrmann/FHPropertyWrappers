@@ -1,10 +1,10 @@
 # FHPropertyWrappers
 
-<p align="left">
-<a href="https://github.com/FelixHerrmann/FHPropertyWrappers/releases"><img alt="GitHub version" src="https://img.shields.io/github/v/release/FelixHerrmann/FHPropertyWrappers"></a>
-<a href="https://github.com/FelixHerrmann/FHPropertyWrappers/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/FelixHerrmann/FHPropertyWrappers"></a>
-<a href="https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers"><img alt="Twitter" src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers"></a>
-</p>
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
+[![Version](https://img.shields.io/github/v/release/FelixHerrmann/FHPropertyWrappers)](https://github.com/FelixHerrmann/FHPropertyWrappers/releases)
+[![License](https://img.shields.io/github/license/FelixHerrmann/FHPropertyWrappers)](https://github.com/FelixHerrmann/FHPropertyWrappers/blob/master/LICENSE)
+[![Tweet](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers)
 
 Some useful Swift Property Wrappers.
 
