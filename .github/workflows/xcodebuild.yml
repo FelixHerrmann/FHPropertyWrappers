@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build macOS
-        run: xcodebuild -scheme FHPropertyWrappers
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS'
       - name: Run macOS tests
-        run: xcodebuild -scheme FHPropertyWrappers test
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS' test
   
   build-ios:
     runs-on: macos-latest
