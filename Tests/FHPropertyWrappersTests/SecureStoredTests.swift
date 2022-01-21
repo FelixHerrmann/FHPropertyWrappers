@@ -1,4 +1,4 @@
-#if !targetEnvironment(simulator)
+#if !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
 import XCTest
 import Security
 @testable import FHPropertyWrappers
@@ -433,4 +433,4 @@ extension SecureStoredTests {
         return try decoder.decode(T.self, from: data)
     }
 }
-#endif
+#endif // !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
