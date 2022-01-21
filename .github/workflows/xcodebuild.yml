@@ -9,14 +9,14 @@ on:
 
 jobs:
   build-macos:
-  runs-on: macos-latest
-  
-  steps:
-    - uses: actions/checkout@v2
-    - name: Build macOS
-      run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS'
-    - name: Run macOS tests
-      run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS' test
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build macOS
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS'
+      - name: Run macOS tests
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS' test
   
   build-macos-catalyst:
     runs-on: macos-latest
