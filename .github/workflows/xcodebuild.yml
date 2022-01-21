@@ -9,14 +9,24 @@ on:
 
 jobs:
   build-macos:
+  runs-on: macos-latest
+  
+  steps:
+    - uses: actions/checkout@v2
+    - name: Build macOS
+      run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS'
+    - name: Run macOS tests
+      run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS' test
+  
+  build-macos-catalyst:
     runs-on: macos-latest
     
     steps:
       - uses: actions/checkout@v2
       - name: Build macOS
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS'
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst'
       - name: Run macOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS' test
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst' test
   
   build-ios:
     runs-on: macos-latest
@@ -24,19 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -sdk iphoneos -destination 'name=iPhone 12'
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=iPhone 12'
       - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -sdk iphoneos -destination 'name=iPhone 12' test
-  
-  build-ios-simulator:
-    runs-on: macos-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -sdk iphonesimulator -destination 'name=iPhone 12'
-      - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -sdk iphonesimulator -destination 'name=iPhone 12' test
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=iPhone 12' test
   
   build-tvos:
     runs-on: macos-latest
@@ -44,16 +44,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvos -destination 'name=Apple TV'
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=Apple TV'
       - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvos -destination 'name=Apple TV' test
-  
-  build-tvos-simulator:
-    runs-on: macos-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvsimulator -destination 'name=Apple TV'
-      - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -sdk appletvsimulator -destination 'name=Apple TV' test
+        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=Apple TV' test
