@@ -82,7 +82,7 @@ struct CustomType: Codable, Storable {
 
 > The wrapped value must conform to `Storable`.
 
-> Tip: To store an array of `Storable` (which is not supported, only `RawStorable` types are allowed), create a container struct arround the array which conforms to `Codable`.
+> Tip: To store an array of `Storable` (which is not supported, only `RawStorable` types are allowed), create a container struct around the array which conforms to `Codable`.
 
 
 ## [SecureStored](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/SecureStored)
