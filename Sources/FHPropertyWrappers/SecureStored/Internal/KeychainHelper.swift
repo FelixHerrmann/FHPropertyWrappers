@@ -56,7 +56,7 @@ internal func _KeychainQuery(key: SecureStoreKey, accessibility: SecureStoreAcce
     return [
         kSecClass: kSecClassGenericPassword,
         kSecAttrService: key.description,
-        kSecAttrAccessible: accessibility.rawValue
+        kSecAttrAccessible: accessibility._value
     ]
 }
 
