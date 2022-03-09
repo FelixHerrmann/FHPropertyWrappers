@@ -66,7 +66,7 @@ import os.log
 extension Stored {
     
     private func _logError(_ error: Error) {
-        if #available(OSX 10.12, iOS 10.0, tvOS 10.0, *) {
+        if #available(macOS 10.12, iOS 10.0, tvOS 10.0, *) {
             os_log("Error: %@", log: OSLog(subsystem: "com.felixherrmann.FHPropertyWrappers", category: "Stored"), type: .error, String(describing: error))
         } else {
             NSLog("Error: %@", String(describing: error))
