@@ -3,20 +3,13 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
 [![Xcode Build](https://github.com/FelixHerrmann/FHPropertyWrappers/actions/workflows/xcodebuild.yml/badge.svg)](https://github.com/FelixHerrmann/FHPropertyWrappers/actions/workflows/xcodebuild.yml)
-[![Version](https://img.shields.io/github/v/release/FelixHerrmann/FHPropertyWrappers)](https://github.com/FelixHerrmann/FHPropertyWrappers/releases)
-[![License](https://img.shields.io/github/license/FelixHerrmann/FHPropertyWrappers)](https://github.com/FelixHerrmann/FHPropertyWrappers/blob/master/LICENSE)
-[![Tweet](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FFelixHerrmann%2FFHPropertyWrappers)
 
 Some useful Swift Property Wrappers.
-
->Will be expanded over time.
-
 
 ## Requirements
 - macOS 10.10+
 - iOS 9.0+
 - tvOS 9.0+
-
 
 ## Installation
 
@@ -31,7 +24,6 @@ Add the following to the dependencies of your `Package.swift`:
 ### Manual
 
 Download the files in the [Sources](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources) folder and drag them into you project.
-
 
 ## [Stored](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/Stored)
 
@@ -85,7 +77,6 @@ struct CustomType: Codable, Storable {
 
 > Tip: To store an array of `Storable` (which is not supported, only `RawStorable` types are allowed), create a container struct around the array which conforms to `Codable`.
 
-
 ## [SecureStored](https://github.com/FelixHerrmann/FHPropertyWrappers/tree/master/Sources/FHPropertyWrappers/SecureStored)
 
 A property wrapper which reads and writes the wrapped value in the `Keychain`.
@@ -135,7 +126,6 @@ struct CustomType: Codable, SecureStorable {
 ```
 
 > The wrapped value must conform to `SecureStorable`.
-
 
 ## License
 
