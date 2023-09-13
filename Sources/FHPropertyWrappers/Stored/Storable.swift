@@ -14,7 +14,6 @@ public protocol Storable {
 }
 
 extension Storable {
-    
     /// A convenience method which can be called on the instance directly.
     public func write(in store: UserDefaults, key: StoreKey) throws {
         try Self.write(value: self, in: store, key: key)

@@ -4,7 +4,8 @@ import os.log
 /// A property wrapper which reads and writes the wrapped value in the **UserDefaults** store.
 ///
 /// The wrapped value must conform to **Storable**.
-@propertyWrapper public struct Stored<Value: Storable>  {
+@propertyWrapper
+public struct Stored<Value: Storable> {
     
     /// The default value if a value of the given type is not specified for the given key.
     public let defaultValue: Value
@@ -26,6 +27,7 @@ import os.log
         self.store = store
     }
     
+    // swiftlint:disable:next missing_docs
     public var wrappedValue: Value {
         get {
             do {
@@ -44,6 +46,7 @@ import os.log
         }
     }
     
+    // swiftlint:disable:next missing_docs
     public var projectedValue: Stored {
         return self
     }
@@ -60,14 +63,13 @@ import os.log
     }
 }
 
-
 // MARK: - Log
 
 extension Stored {
-    
     private func _logError(_ error: Error) {
         if #available(macOS 10.12, iOS 10.0, tvOS 10.0, *) {
-            os_log("Error: %@", log: OSLog(subsystem: "com.felixherrmann.FHPropertyWrappers", category: "Stored"), type: .error, String(describing: error))
+            let log = OSLog(subsystem: "com.felixherrmann.FHPropertyWrappers", category: "Stored")
+            os_log("Error: %@", log: log, type: .error, String(describing: error))
         } else {
             NSLog("Error: %@", String(describing: error))
         }

@@ -32,7 +32,6 @@ opt_in_rules:
     - first_where
     - flatmap_over_map_reduce
     - force_unwrapping
-    - function_default_parameter_at_end
     - identical_operands
     - implicitly_unwrapped_optional
     - indentation_width

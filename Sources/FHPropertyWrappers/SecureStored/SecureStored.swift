@@ -4,7 +4,8 @@ import os.log
 /// A property wrapper which reads and writes the wrapped value in the **Keychain**.
 ///
 /// The wrapped value must conform to **SecureStorable**.
-@propertyWrapper public struct SecureStored<Value: SecureStorable>  {
+@propertyWrapper
+public struct SecureStored<Value: SecureStorable> {
     
     /// The default value if a value of the given type is not specified for the given key.
     public let defaultValue: Value
@@ -20,12 +21,17 @@ import os.log
     ///   - defaultValue: The default value if a value of the given type is not specified for the given key.
     ///   - key: The key to read and write the value to in the **Keychain**.
     ///   - accessibility: The level of accessibility. Defaults to `SecureStoreAccessibility.afterFirstUnlockThisDeviceOnly`
-    public init(wrappedValue defaultValue: Value = .defaultStoredValue, _ key: SecureStoreKey, accessibility: SecureStoreAccessibility = .afterFirstUnlockThisDeviceOnly) {
+    public init(
+        wrappedValue defaultValue: Value = .defaultStoredValue,
+        _ key: SecureStoreKey,
+        accessibility: SecureStoreAccessibility = .afterFirstUnlockThisDeviceOnly
+    ) {
         self.defaultValue = defaultValue
         self.key = key
         self.accessibility = accessibility
     }
     
+    // swiftlint:disable:next missing_docs
     public var wrappedValue: Value {
         get {
             do {
@@ -44,6 +50,7 @@ import os.log
         }
     }
     
+    // swiftlint:disable:next missing_docs
     public var projectedValue: SecureStored {
         return self
     }
@@ -56,23 +63,22 @@ import os.log
     /// $test.remove()
     /// ```
     public func remove() {
-        let query = _KeychainQuery(key: key, accessibility: accessibility)
+        let query = _keychainQuery(key: key, accessibility: accessibility)
         do {
-            try _KeychainDelete(query: query)
+            try _keychainDelete(query: query)
         } catch {
             _logError(error)
         }
     }
 }
 
-
 // MARK: - Log
 
 extension SecureStored {
-    
     private func _logError(_ error: Error) {
         if #available(macOS 10.12, iOS 10.0, tvOS 10.0, *) {
-            os_log("Error: %@", log: OSLog(subsystem: "com.felixherrmann.FHPropertyWrappers", category: "SecureStored"), type: .error, String(describing: error))
+            let log = OSLog(subsystem: "com.felixherrmann.FHPropertyWrappers", category: "SecureStored")
+            os_log("Error: %@", log: log, type: .error, String(describing: error))
         } else {
             NSLog("Error: %@", String(describing: error))
         }

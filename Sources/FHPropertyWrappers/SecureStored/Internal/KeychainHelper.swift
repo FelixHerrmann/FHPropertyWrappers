@@ -1,11 +1,9 @@
+// swiftlint:disable:this file_name
+
 import Foundation
 import Security
 
-
-// MARK: - _KeychainError
-
 internal struct _KeychainError: Error {
-    
     internal let _status: OSStatus
     
     internal init(status: OSStatus) {
@@ -14,8 +12,7 @@ internal struct _KeychainError: Error {
 }
 
 extension _KeychainError: CustomDebugStringConvertible {
-    
-    var debugDescription: String {
+    internal var debugDescription: String {
         switch _status {
         case errSecNotAvailable:
             return "KeychainError: \(_status) (not available)"
@@ -39,10 +36,9 @@ extension _KeychainError: CustomDebugStringConvertible {
     }
 }
 
-
 // MARK: - Keychain Query
 
-internal func _KeychainQuery(key: SecureStoreKey, accessibility: SecureStoreAccessibility) -> [CFString: Any] {
+internal func _keychainQuery(key: SecureStoreKey, accessibility: SecureStoreAccessibility) -> [CFString: Any] {
     #if !SWIFT_PACKAGE // kSecUseDataProtectionKeychain doesn't work outside of an application
     if #available(iOS 13.0, macOS 10.15, *) {
         return [
@@ -60,10 +56,9 @@ internal func _KeychainQuery(key: SecureStoreKey, accessibility: SecureStoreAcce
     ]
 }
 
-
 // MARK: - Keychain Actions
 
-internal func _KeychainGet(query: [CFString: Any]) throws -> Data? {
+internal func _keychainGet(query: [CFString: Any]) throws -> Data? {
     var query = query
     query[kSecReturnData] = true
     
@@ -80,7 +75,7 @@ internal func _KeychainGet(query: [CFString: Any]) throws -> Data? {
     }
 }
 
-internal func _KeychainSet(value: Data?, query: [CFString: Any]) throws {
+internal func _keychainSet(value: Data?, query: [CFString: Any]) throws {
     var query = query
     
     let itemExists = SecItemCopyMatching(query as CFDictionary, nil) == errSecSuccess
@@ -102,7 +97,7 @@ internal func _KeychainSet(value: Data?, query: [CFString: Any]) throws {
     }
 }
 
-internal func _KeychainDelete(query: [CFString: Any]) throws {
+internal func _keychainDelete(query: [CFString: Any]) throws {
     let status = SecItemDelete(query as CFDictionary)
     
     if status != errSecSuccess && status != errSecItemNotFound {

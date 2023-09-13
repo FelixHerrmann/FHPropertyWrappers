@@ -14,7 +14,6 @@ public protocol SecureStorable {
 }
 
 extension SecureStorable {
-    
     /// A convenience method which can be called on the instance directly.
     public func write(key: SecureStoreKey, accessibility: SecureStoreAccessibility) throws {
         try Self.write(value: self, for: key, accessibility: accessibility)
