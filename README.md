@@ -3,6 +3,7 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFelixHerrmann%2FFHPropertyWrappers%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/FelixHerrmann/FHPropertyWrappers)
 [![Xcode Build](https://github.com/FelixHerrmann/FHPropertyWrappers/actions/workflows/xcodebuild.yml/badge.svg)](https://github.com/FelixHerrmann/FHPropertyWrappers/actions/workflows/xcodebuild.yml)
+[![SwiftLint](https://github.com/FelixHerrmann/FHPropertyWrappers/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/FelixHerrmann/FHPropertyWrappers/actions/workflows/swiftlint.yml)
 
 Some useful Swift Property Wrappers.
 
