@@ -24,10 +24,10 @@ jobs:
         run: |
           xcodebuild \
           -scheme FHPropertyWrappers \
-          -destination ${{ matrix.destination }}
+          -destination '${{ matrix.destination }}'
       - name: Test 
         run: |
           xcodebuild \
           -scheme FHPropertyWrappers \
-          -destination ${{ matrix.destination }} \
+          -destination '${{ matrix.destination }}' \
           test
