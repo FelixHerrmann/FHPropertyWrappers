@@ -8,20 +8,23 @@ let package = Package(
     platforms: [
         .macOS(.v10_10),
         .iOS(.v9),
-        .tvOS(.v9)
+        .tvOS(.v9),
     ],
     products: [
         .library(
             name: "FHPropertyWrappers",
-            targets: ["FHPropertyWrappers"]),
+            targets: ["FHPropertyWrappers"]
+        ),
     ],
     dependencies: [],
     targets: [
         .target(
             name: "FHPropertyWrappers",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "FHPropertyWrappersTests",
-            dependencies: ["FHPropertyWrappers"]),
+            dependencies: ["FHPropertyWrappers"]
+        ),
     ]
 )

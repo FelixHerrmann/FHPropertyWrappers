@@ -1,14 +1,14 @@
+// swiftlint:disable line_length
+
 import Foundation
 import Security
 
 /// The accessibility level of a keychain item.
 public struct SecureStoreAccessibility {
-    
     internal var _value: CFString
 }
 
 extension SecureStoreAccessibility {
-    
     /// Can be accessed only while the device is unlocked by the user.
     ///
     /// This is recommended for items that need to be accessible only while the application is in the foreground.
@@ -67,3 +67,5 @@ extension SecureStoreAccessibility {
     @available(macOS, introduced: 10.9, deprecated: 10.14, message: "Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly")
     public static let alwaysThisDeviceOnly = SecureStoreAccessibility(_value: kSecAttrAccessibleAlwaysThisDeviceOnly)
 }
+
+// swiftlint:enable line_length

@@ -3,91 +3,84 @@ import XCTest
 import Security
 @testable import FHPropertyWrappers
 
-struct CustomSecureType: Codable, Equatable {
-    var string: String
-    var int: Int
-}
-
-extension CustomSecureType: SecureStorable {
+final class SecureStoredTests: XCTestCase { // swiftlint:disable:this type_body_length
+    @SecureStored(.bool)
+    private var bool: Bool
     
-    static var defaultStoredValue: CustomSecureType {
-        CustomSecureType(string: "", int: 0)
-    }
-}
-
-enum RawRepresentableSecureEnumeration: String {
-    case a
-    case b
-}
-
-extension RawRepresentableSecureEnumeration: SecureStorable {
+    @SecureStored(.int)
+    private var int: Int
     
-    static var defaultStoredValue: RawRepresentableSecureEnumeration {
-        return .a
-    }
-}
-
-extension SecureStoreKey {
-    static let bool: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.bool"
-    static let int: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int"
-    static let int8: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int8"
-    static let int16: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int16"
-    static let int32: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int32"
-    static let int64: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int64"
-    static let uInt: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt"
-    static let uInt8: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt8"
-    static let uInt16: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt16"
-    static let uInt32: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt32"
-    static let uInt64: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt64"
-    static let float: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.float"
-    static let double: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.double"
-    static let string: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.string"
-    static let date: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.date"
-    static let url: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.url"
-    static let data: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.data"
-    static let array: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.array"
-    static let dictionary: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.dictionary"
-    static let optional: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.optional"
-    static let codable: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.codable"
-    static let rawRepresentable: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.rawRepresentable"
-}
-
-final class SecureStoredTests: XCTestCase {
+    @SecureStored(.int8)
+    private var int8: Int8
     
-    @SecureStored(.bool) var bool: Bool
-    @SecureStored(.int) var int: Int
-    @SecureStored(.int8) var int8: Int8
-    @SecureStored(.int16) var int16: Int16
-    @SecureStored(.int32) var int32: Int32
-    @SecureStored(.int64) var int64: Int64
-    @SecureStored(.uInt) var uInt: UInt
-    @SecureStored(.uInt8) var uInt8: UInt8
-    @SecureStored(.uInt16) var uInt16: UInt16
-    @SecureStored(.uInt32) var uInt32: UInt32
-    @SecureStored(.uInt64) var uInt64: UInt64
-    @SecureStored(.float) var float: Float
-    @SecureStored(.double) var double: Double
-    @SecureStored(.string) var string: String
-    @SecureStored(.date) var date: Date = Date(timeIntervalSince1970: 919753200)
-    @SecureStored(.url) var url: URL
-    @SecureStored(.data) var data: Data
-    @SecureStored(.array) var array: [String]
-    @SecureStored(.dictionary) var dictionary: [String: Int]
-    @SecureStored(.optional) var optional: String?
-    @SecureStored(.codable) var codable: CustomSecureType
-    @SecureStored(.rawRepresentable) var rawRepresentable: RawRepresentableSecureEnumeration
+    @SecureStored(.int16)
+    private var int16: Int16
+    
+    @SecureStored(.int32)
+    private var int32: Int32
+    
+    @SecureStored(.int64)
+    private var int64: Int64
+    
+    @SecureStored(.uInt)
+    private var uInt: UInt
+    
+    @SecureStored(.uInt8)
+    private var uInt8: UInt8
+    
+    @SecureStored(.uInt16)
+    private var uInt16: UInt16
+    
+    @SecureStored(.uInt32)
+    private var uInt32: UInt32
+    
+    @SecureStored(.uInt64)
+    private var uInt64: UInt64
+    
+    @SecureStored(.float)
+    private var float: Float
+    
+    @SecureStored(.double)
+    private var double: Double
+    
+    @SecureStored(.string)
+    private var string: String
+    
+    @SecureStored(.date)
+    private var date = Date(timeIntervalSince1970: 919_753_200)
+    
+    @SecureStored(.url)
+    private var url: URL
+    
+    @SecureStored(.data)
+    private var data: Data
+    
+    @SecureStored(.array)
+    private var array: [String]
+    
+    @SecureStored(.dictionary)
+    private var dictionary: [String: Int]
+    
+    @SecureStored(.optional)
+    private var optional: String?
+    
+    @SecureStored(.codable)
+    private var codable: CustomSecureType
+    
+    @SecureStored(.rawRepresentable)
+    private var rawRepresentable: RawRepresentableSecureEnumeration
     
     func testBool() throws {
         $bool.remove()
-        XCTAssertEqual(bool, false)
+        XCTAssertFalse(bool)
         XCTAssertTrue(_checkIfItemNotExists(key: $bool.key))
         
         bool = true
-        XCTAssertEqual(bool, true)
-        XCTAssertEqual(try _getItem(stored: $bool), true)
+        XCTAssertTrue(bool)
+        XCTAssertEqual(try _getItem(stored: $bool), .some(true))
         
         $bool.remove()
-        XCTAssertEqual(bool, false)
+        XCTAssertFalse(bool)
         XCTAssertTrue(_checkIfItemNotExists(key: $bool.key))
     }
     
@@ -276,15 +269,15 @@ final class SecureStoredTests: XCTestCase {
     
     func testDate() throws {
         $date.remove()
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 919753200))
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 919_753_200))
         XCTAssertTrue(_checkIfItemNotExists(key: $date.key))
         
-        date = Date(timeIntervalSince1970: 919753201)
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 919753201))
-        XCTAssertEqual(try _getItem(stored: $date), Date(timeIntervalSince1970: 919753201))
+        date = Date(timeIntervalSince1970: 919_753_201)
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 919_753_201))
+        XCTAssertEqual(try _getItem(stored: $date), Date(timeIntervalSince1970: 919_753_201))
         
         $date.remove()
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 919753200))
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 919_753_200))
         XCTAssertTrue(_checkIfItemNotExists(key: $date.key))
     }
     
@@ -293,9 +286,11 @@ final class SecureStoredTests: XCTestCase {
         XCTAssertEqual(url, URL(fileURLWithPath: ""))
         XCTAssertTrue(_checkIfItemNotExists(key: $url.key))
         
+        // swiftlint:disable force_unwrapping
         url = URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
         XCTAssertEqual(url, URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
         XCTAssertEqual(try _getItem(stored: $url), URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        // swiftlint:enable force_unwrapping
         
         $url.remove()
         XCTAssertEqual(url, URL(fileURLWithPath: ""))
@@ -306,11 +301,11 @@ final class SecureStoredTests: XCTestCase {
         $data.remove()
         XCTAssertEqual(data, Data())
         XCTAssertTrue(_checkIfItemNotExists(key: $data.key))
-
+        
         data = Data("data".utf8)
         XCTAssertEqual(data, Data("data".utf8))
         XCTAssertEqual(_getData(key: $data.key), Data("data".utf8))
-
+        
         $data.remove()
         XCTAssertEqual(data, Data())
         XCTAssertTrue(_checkIfItemNotExists(key: $data.key))
@@ -350,7 +345,7 @@ final class SecureStoredTests: XCTestCase {
         XCTAssertTrue(_checkIfItemNotExists(key: $optional.key))
         
         optional = "test"
-        XCTAssertEqual(optional, Optional<String>("test"))
+        XCTAssertEqual(optional, "test")
         let data = _getData(key: $optional.key)
         let string = data.map { String(decoding: $0, as: UTF8.self) }
         XCTAssertEqual(string, "test")
@@ -380,23 +375,68 @@ final class SecureStoredTests: XCTestCase {
         $rawRepresentable.remove()
         XCTAssertEqual(rawRepresentable, .a)
         XCTAssertTrue(_checkIfItemNotExists(key: $rawRepresentable.key))
-
+        
         rawRepresentable = .b
         XCTAssertEqual(rawRepresentable, .b)
         let data = try XCTUnwrap(_getData(key: $rawRepresentable.key))
         XCTAssertEqual(String(decoding: data, as: UTF8.self), "b")
-
+        
         $rawRepresentable.remove()
         XCTAssertEqual(rawRepresentable, .a)
         XCTAssertTrue(_checkIfItemNotExists(key: $rawRepresentable.key))
     }
 }
 
-
 // MARK: - Helpers
 
+private struct CustomSecureType: Codable, Equatable {
+    var string: String
+    var int: Int
+}
+
+extension CustomSecureType: SecureStorable {
+    static var defaultStoredValue: CustomSecureType {
+        CustomSecureType(string: "", int: 0)
+    }
+}
+
+private enum RawRepresentableSecureEnumeration: String {
+    case a // swiftlint:disable:this identifier_name
+    case b // swiftlint:disable:this identifier_name
+}
+
+extension RawRepresentableSecureEnumeration: SecureStorable {
+    static var defaultStoredValue: RawRepresentableSecureEnumeration {
+        return .a
+    }
+}
+
+extension SecureStoreKey {
+    fileprivate static let bool: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.bool"
+    fileprivate static let int: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int"
+    fileprivate static let int8: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int8"
+    fileprivate static let int16: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int16"
+    fileprivate static let int32: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int32"
+    fileprivate static let int64: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.int64"
+    fileprivate static let uInt: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt"
+    fileprivate static let uInt8: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt8"
+    fileprivate static let uInt16: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt16"
+    fileprivate static let uInt32: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt32"
+    fileprivate static let uInt64: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.uInt64"
+    fileprivate static let float: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.float"
+    fileprivate static let double: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.double"
+    fileprivate static let string: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.string"
+    fileprivate static let date: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.date"
+    fileprivate static let url: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.url"
+    fileprivate static let data: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.data"
+    fileprivate static let array: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.array"
+    fileprivate static let dictionary: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.dictionary"
+    fileprivate static let optional: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.optional"
+    fileprivate static let codable: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.codable"
+    fileprivate static let rawRepresentable: SecureStoreKey = "com.felixherrmann.FHPropertyWrappers.rawRepresentable"
+}
+
 extension SecureStoredTests {
-    
     private func _query(key: SecureStoreKey) -> [CFString: Any] {
         #if !SWIFT_PACKAGE // kSecUseDataProtectionKeychain doesn't work outside of an application
         if #available(iOS 13.0, macOS 10.15, *) {
@@ -434,3 +474,5 @@ extension SecureStoredTests {
     }
 }
 #endif // !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
+
+// swiftlint:disable:this file_length

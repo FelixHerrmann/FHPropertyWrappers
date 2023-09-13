@@ -1,91 +1,84 @@
 import XCTest
 @testable import FHPropertyWrappers
 
-struct CustomType: Codable, Equatable {
-    var string: String
-    var int: Int
-}
-
-extension CustomType: Storable {
+final class StoredTests: XCTestCase { // swiftlint:disable:this type_body_length
+    @Stored(.bool)
+    private var bool: Bool
     
-    static var defaultStoredValue: CustomType {
-        CustomType(string: "", int: 0)
-    }
-}
-
-enum RawRepresentableEnumeration: String {
-    case a
-    case b
-}
-
-extension RawRepresentableEnumeration: Storable {
+    @Stored(.int)
+    private var int: Int
     
-    static var defaultStoredValue: RawRepresentableEnumeration {
-        return .a
-    }
-}
-
-extension StoreKey {
-    static let bool: StoreKey = "com.felixherrmann.FHPropertyWrappers.bool"
-    static let int: StoreKey = "com.felixherrmann.FHPropertyWrappers.int"
-    static let int8: StoreKey = "com.felixherrmann.FHPropertyWrappers.int8"
-    static let int16: StoreKey = "com.felixherrmann.FHPropertyWrappers.int16"
-    static let int32: StoreKey = "com.felixherrmann.FHPropertyWrappers.int32"
-    static let int64: StoreKey = "com.felixherrmann.FHPropertyWrappers.int64"
-    static let uInt: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt"
-    static let uInt8: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt8"
-    static let uInt16: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt16"
-    static let uInt32: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt32"
-    static let uInt64: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt64"
-    static let float: StoreKey = "com.felixherrmann.FHPropertyWrappers.float"
-    static let double: StoreKey = "com.felixherrmann.FHPropertyWrappers.double"
-    static let string: StoreKey = "com.felixherrmann.FHPropertyWrappers.string"
-    static let date: StoreKey = "com.felixherrmann.FHPropertyWrappers.date"
-    static let url: StoreKey = "com.felixherrmann.FHPropertyWrappers.url"
-    static let data: StoreKey = "com.felixherrmann.FHPropertyWrappers.data"
-    static let array: StoreKey = "com.felixherrmann.FHPropertyWrappers.array"
-    static let dictionary: StoreKey = "com.felixherrmann.FHPropertyWrappers.dictionary"
-    static let optional: StoreKey = "com.felixherrmann.FHPropertyWrappers.optional"
-    static let codable: StoreKey = "com.felixherrmann.FHPropertyWrappers.codable"
-    static let rawRepresentable: StoreKey = "com.felixherrmann.FHPropertyWrappers.rawRepresentable"
-}
-
-final class StoredTests: XCTestCase {
+    @Stored(.int8)
+    private var int8: Int8
     
-    @Stored(.bool) var bool: Bool
-    @Stored(.int) var int: Int
-    @Stored(.int8) var int8: Int8
-    @Stored(.int16) var int16: Int16
-    @Stored(.int32) var int32: Int32
-    @Stored(.int64) var int64: Int64
-    @Stored(.uInt) var uInt: UInt
-    @Stored(.uInt8) var uInt8: UInt8
-    @Stored(.uInt16) var uInt16: UInt16
-    @Stored(.uInt32) var uInt32: UInt32
-    @Stored(.uInt64) var uInt64: UInt64
-    @Stored(.float) var float: Float
-    @Stored(.double) var double: Double
-    @Stored(.string) var string: String
-    @Stored(.date) var date: Date = Date(timeIntervalSince1970: 919753200)
-    @Stored(.url) var url: URL
-    @Stored(.data) var data: Data
-    @Stored(.array) var array: [String]
-    @Stored(.dictionary) var dictionary: [String: Int]
-    @Stored(.optional) var optional: String?
-    @Stored(.codable) var codable: CustomType
-    @Stored(.rawRepresentable) var rawRepresentable: RawRepresentableEnumeration
+    @Stored(.int16)
+    private var int16: Int16
+    
+    @Stored(.int32)
+    private var int32: Int32
+    
+    @Stored(.int64)
+    private var int64: Int64
+    
+    @Stored(.uInt)
+    private var uInt: UInt
+    
+    @Stored(.uInt8)
+    private var uInt8: UInt8
+    
+    @Stored(.uInt16)
+    private var uInt16: UInt16
+    
+    @Stored(.uInt32)
+    private var uInt32: UInt32
+    
+    @Stored(.uInt64)
+    private var uInt64: UInt64
+    
+    @Stored(.float)
+    private var float: Float
+    
+    @Stored(.double)
+    private var double: Double
+    
+    @Stored(.string)
+    private var string: String
+    
+    @Stored(.date)
+    private var date = Date(timeIntervalSince1970: 919_753_200)
+    
+    @Stored(.url)
+    private var url: URL
+    
+    @Stored(.data)
+    private var data: Data
+    
+    @Stored(.array)
+    private var array: [String]
+    
+    @Stored(.dictionary)
+    private var dictionary: [String: Int]
+    
+    @Stored(.optional)
+    private var optional: String?
+    
+    @Stored(.codable)
+    private var codable: CustomType
+    
+    @Stored(.rawRepresentable)
+    private var rawRepresentable: RawRepresentableEnumeration
     
     func testBool() throws {
         $bool.remove()
-        XCTAssertEqual(bool, false)
+        XCTAssertFalse(bool)
         XCTAssertNil(UserDefaults.standard.value(forKey: $bool.key._value))
         
         bool = true
-        XCTAssertEqual(bool, true)
+        XCTAssertTrue(bool)
         XCTAssertEqual(UserDefaults.standard.value(forKey: $bool.key._value) as? Bool, true)
         
         $bool.remove()
-        XCTAssertEqual(bool, false)
+        XCTAssertFalse(bool)
         XCTAssertNil(UserDefaults.standard.value(forKey: $bool.key._value))
     }
     
@@ -273,15 +266,15 @@ final class StoredTests: XCTestCase {
     
     func testDate() throws {
         $date.remove()
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 919753200))
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 919_753_200))
         XCTAssertNil(UserDefaults.standard.value(forKey: $date.key._value))
         
-        date = Date(timeIntervalSince1970: 919753201)
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 919753201))
-        XCTAssertEqual(UserDefaults.standard.value(forKey: $date.key._value) as? Date, Date(timeIntervalSince1970: 919753201))
+        date = Date(timeIntervalSince1970: 919_753_201)
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 919_753_201))
+        XCTAssertEqual(UserDefaults.standard.value(forKey: $date.key._value) as? Date, Date(timeIntervalSince1970: 919_753_201))
         
         $date.remove()
-        XCTAssertEqual(date, Date(timeIntervalSince1970: 919753200))
+        XCTAssertEqual(date, Date(timeIntervalSince1970: 919_753_200))
         XCTAssertNil(UserDefaults.standard.value(forKey: $date.key._value))
     }
     
@@ -290,24 +283,29 @@ final class StoredTests: XCTestCase {
         XCTAssertEqual(url, URL(fileURLWithPath: ""))
         XCTAssertNil(UserDefaults.standard.value(forKey: $url.key._value))
         
+        // swiftlint:disable force_unwrapping
         url = URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
         XCTAssertEqual(url, URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
-        XCTAssertEqual(UserDefaults.standard.url(forKey: $url.key._value), URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!)
+        XCTAssertEqual(
+            UserDefaults.standard.url(forKey: $url.key._value),
+            URL(string: "https://github.com/FelixHerrmann/FHPropertyWrappers")!
+        )
+        // swiftlint:enable force_unwrapping
         
         $url.remove()
         XCTAssertEqual(url, URL(fileURLWithPath: ""))
         XCTAssertNil(UserDefaults.standard.value(forKey: $url.key._value))
     }
-
+    
     func testData() throws {
         $data.remove()
         XCTAssertEqual(data, Data())
         XCTAssertNil(UserDefaults.standard.value(forKey: $data.key._value))
-
+        
         data = Data("data".utf8)
         XCTAssertEqual(data, Data("data".utf8))
         XCTAssertEqual(UserDefaults.standard.value(forKey: $data.key._value) as? Data, Data("data".utf8))
-
+        
         $data.remove()
         XCTAssertEqual(data, Data())
         XCTAssertNil(UserDefaults.standard.value(forKey: $data.key._value))
@@ -347,7 +345,7 @@ final class StoredTests: XCTestCase {
         XCTAssertNil(UserDefaults.standard.value(forKey: $optional.key._value))
         
         optional = "test"
-        XCTAssertEqual(optional, Optional<String>("test"))
+        XCTAssertEqual(optional, "test")
         XCTAssertEqual(UserDefaults.standard.value(forKey: $optional.key._value) as? String, "test")
         
         optional = nil
@@ -385,3 +383,54 @@ final class StoredTests: XCTestCase {
         XCTAssertNil(UserDefaults.standard.value(forKey: $rawRepresentable.key._value))
     }
 }
+
+// MARK: - Helpers
+
+private struct CustomType: Codable, Equatable {
+    var string: String
+    var int: Int
+}
+
+extension CustomType: Storable {
+    static var defaultStoredValue: CustomType {
+        CustomType(string: "", int: 0)
+    }
+}
+
+private enum RawRepresentableEnumeration: String {
+    case a // swiftlint:disable:this identifier_name
+    case b // swiftlint:disable:this identifier_name
+}
+
+extension RawRepresentableEnumeration: Storable {
+    static var defaultStoredValue: RawRepresentableEnumeration {
+        return .a
+    }
+}
+
+extension StoreKey {
+    fileprivate static let bool: StoreKey = "com.felixherrmann.FHPropertyWrappers.bool"
+    fileprivate static let int: StoreKey = "com.felixherrmann.FHPropertyWrappers.int"
+    fileprivate static let int8: StoreKey = "com.felixherrmann.FHPropertyWrappers.int8"
+    fileprivate static let int16: StoreKey = "com.felixherrmann.FHPropertyWrappers.int16"
+    fileprivate static let int32: StoreKey = "com.felixherrmann.FHPropertyWrappers.int32"
+    fileprivate static let int64: StoreKey = "com.felixherrmann.FHPropertyWrappers.int64"
+    fileprivate static let uInt: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt"
+    fileprivate static let uInt8: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt8"
+    fileprivate static let uInt16: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt16"
+    fileprivate static let uInt32: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt32"
+    fileprivate static let uInt64: StoreKey = "com.felixherrmann.FHPropertyWrappers.uInt64"
+    fileprivate static let float: StoreKey = "com.felixherrmann.FHPropertyWrappers.float"
+    fileprivate static let double: StoreKey = "com.felixherrmann.FHPropertyWrappers.double"
+    fileprivate static let string: StoreKey = "com.felixherrmann.FHPropertyWrappers.string"
+    fileprivate static let date: StoreKey = "com.felixherrmann.FHPropertyWrappers.date"
+    fileprivate static let url: StoreKey = "com.felixherrmann.FHPropertyWrappers.url"
+    fileprivate static let data: StoreKey = "com.felixherrmann.FHPropertyWrappers.data"
+    fileprivate static let array: StoreKey = "com.felixherrmann.FHPropertyWrappers.array"
+    fileprivate static let dictionary: StoreKey = "com.felixherrmann.FHPropertyWrappers.dictionary"
+    fileprivate static let optional: StoreKey = "com.felixherrmann.FHPropertyWrappers.optional"
+    fileprivate static let codable: StoreKey = "com.felixherrmann.FHPropertyWrappers.codable"
+    fileprivate static let rawRepresentable: StoreKey = "com.felixherrmann.FHPropertyWrappers.rawRepresentable"
+}
+
+// swiftlint:disable:this file_length
