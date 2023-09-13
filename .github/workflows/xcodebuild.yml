@@ -15,7 +15,7 @@ on:
 
 jobs:
   build-test-package:
-    name: Build & test Package
+    name: Build & Test Package
     strategy:
       matrix:
         destination:
