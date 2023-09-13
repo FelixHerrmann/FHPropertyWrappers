@@ -2,48 +2,38 @@ name: Xcode Build
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
   pull_request:
-    branches: [ master ]
+    branches: 
+      - master
+    paths-ignore:
+      - 'README.md'
   workflow_dispatch:
 
 jobs:
-  build-macos:
-    runs-on: macos-latest
-    
+  build-test-package:
+    name: Build & Test Package
+    strategy:
+      matrix:
+        destination:
+          - platform=macOS
+          - platform=macOS,arch=x86_64,variant=Mac Catalyst
+          - name=iPhone 14
+          - name=Apple TV
+    runs-on: macos-13
     steps:
-      - uses: actions/checkout@v2
-      - name: Build macOS
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS'
-      - name: Run macOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS' test
-  
-  build-macos-catalyst:
-    runs-on: macos-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build macOS
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst'
-      - name: Run macOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'platform=macOS,arch=x86_64,variant=Mac Catalyst' test
-  
-  build-ios:
-    runs-on: macos-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=iPhone 12'
-      - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=iPhone 12' test
-  
-  build-tvos:
-    runs-on: macos-latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build iOS
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=Apple TV'
-      - name: Run iOS tests
-        run: xcodebuild -scheme FHPropertyWrappers -destination 'name=Apple TV' test
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          xcodebuild \
+          -scheme FHPropertyWrappers \
+          -destination '${{ matrix.destination }}'
+      - name: Test 
+        run: |
+          xcodebuild \
+          -scheme FHPropertyWrappers \
+          -destination '${{ matrix.destination }}' \
+          test
