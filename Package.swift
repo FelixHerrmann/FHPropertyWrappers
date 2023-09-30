@@ -16,11 +16,10 @@ let package = Package(
             targets: ["FHPropertyWrappers"]
         ),
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "FHPropertyWrappers",
-            dependencies: []
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "FHPropertyWrappersTests",
