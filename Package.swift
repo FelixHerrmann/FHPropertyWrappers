@@ -20,7 +20,8 @@ let package = Package(
     targets: [
         .target(
             name: "FHPropertyWrappers",
-            dependencies: []
+            dependencies: [],
+            resources: [.copy("Resources")]
         ),
         .testTarget(
             name: "FHPropertyWrappersTests",
