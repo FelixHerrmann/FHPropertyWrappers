@@ -21,7 +21,7 @@ let package = Package(
         .target(
             name: "FHPropertyWrappers",
             dependencies: [],
-            resources: [.copy("Resources")]
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "FHPropertyWrappersTests",
