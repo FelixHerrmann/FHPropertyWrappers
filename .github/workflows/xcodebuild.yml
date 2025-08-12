@@ -23,7 +23,7 @@ jobs:
           - platform=macOS,arch=x86_64,variant=Mac Catalyst
           - name=iPhone 14
           - name=Apple TV
-    runs-on: macos-13
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - name: Build
