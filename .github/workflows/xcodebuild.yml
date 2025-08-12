@@ -36,9 +36,4 @@ jobs:
           xcodebuild \
           -scheme FHPropertyWrappers \
           -destination '${{ matrix.destination }}' \
-          -resultBundlePath TestResults \
           test
-      - uses: kishikawakatsumi/xcresulttool@v1
-        with:
-          path: TestResults.xcresult
-        if: success() || failure()
