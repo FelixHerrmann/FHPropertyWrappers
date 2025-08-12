@@ -260,7 +260,7 @@ final class SecureStoredTests: XCTestCase { // swiftlint:disable:this type_body_
         string = "string"
         XCTAssertEqual(string, "string")
         let data = try XCTUnwrap(_getData(key: $string.key))
-        XCTAssertEqual(String(decoding: data, as: UTF8.self), "string")
+        XCTAssertEqual(String(bytes: data, encoding: .utf8), "string")
         
         $string.remove()
         XCTAssertEqual(string, "")
@@ -347,7 +347,7 @@ final class SecureStoredTests: XCTestCase { // swiftlint:disable:this type_body_
         optional = "test"
         XCTAssertEqual(optional, "test")
         let data = _getData(key: $optional.key)
-        let string = data.map { String(decoding: $0, as: UTF8.self) }
+        let string = data.flatMap { String(bytes: $0, encoding: .utf8) }
         XCTAssertEqual(string, "test")
         
         optional = nil
@@ -379,7 +379,7 @@ final class SecureStoredTests: XCTestCase { // swiftlint:disable:this type_body_
         rawRepresentable = .b
         XCTAssertEqual(rawRepresentable, .b)
         let data = try XCTUnwrap(_getData(key: $rawRepresentable.key))
-        XCTAssertEqual(String(decoding: data, as: UTF8.self), "b")
+        XCTAssertEqual(String(bytes: data, encoding: .utf8), "b")
         
         $rawRepresentable.remove()
         XCTAssertEqual(rawRepresentable, .a)
