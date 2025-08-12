@@ -28,7 +28,7 @@ extension String: SecureStorable {
     public static func read(key: SecureStoreKey, accessibility: SecureStoreAccessibility) throws -> String? {
         let query = _keychainQuery(key: key, accessibility: accessibility)
         guard let data = try _keychainGet(query: query) else { return nil }
-        return String(decoding: data, as: UTF8.self)
+        return String(bytes: data, encoding: .utf8)
     }
     
     public static func write(value: String, for key: SecureStoreKey, accessibility: SecureStoreAccessibility) throws {

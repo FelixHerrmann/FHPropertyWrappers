@@ -119,8 +119,8 @@ extension Array: Storable where Element: RawStorable {
         return []
     }
     
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Array? {
-        return store.value(forKey: key._value) as? Array
+    public static func read(in store: UserDefaults, key: StoreKey) throws -> Self? {
+        return store.value(forKey: key._value) as? Self
     }
     
     public static func write(value: Array, in store: UserDefaults, key: StoreKey) throws {
@@ -133,8 +133,8 @@ extension Dictionary: Storable where Key: RawStorable, Value: RawStorable {
         return [:]
     }
     
-    public static func read(in store: UserDefaults, key: StoreKey) throws -> Dictionary? {
-        return store.value(forKey: key._value) as? Dictionary
+    public static func read(in store: UserDefaults, key: StoreKey) throws -> Self? {
+        return store.value(forKey: key._value) as? Self
     }
     
     public static func write(value: Dictionary, in store: UserDefaults, key: StoreKey) throws {
