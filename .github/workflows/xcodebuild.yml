@@ -21,11 +21,11 @@ jobs:
         destination:
           - platform=macOS
           - platform=macOS,arch=x86_64,variant=Mac Catalyst
-          - name=iPhone 14
-          - name=Apple TV
+          - name=iPhone 17
+          - name=Apple TV 4K (3rd generation)
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Build
         run: |
           xcodebuild \
