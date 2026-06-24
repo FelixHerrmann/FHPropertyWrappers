@@ -23,9 +23,9 @@ jobs:
           - platform=macOS,arch=x86_64,variant=Mac Catalyst
           - name=iPhone 17
           - name=Apple TV 4K (3rd generation)
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build
         run: |
           xcodebuild \
